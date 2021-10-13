@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width,initial-scale=1'>
+
+	<title>Svelte app</title>
+
+	<link rel='icon' type='image/png' href='/favicon.png'>
+	<link rel='stylesheet' href='/global.css'>
+	<link rel='stylesheet' href='/build/bundle.css'>
+
+	<script defer src='/build/bundle.js'></script>
+</head>
+
+<body>
+	<sp-slider
+		siteurl="http://sp2013.sp2013gm"
+		weburl="en"
+		list="298968AA-09EC-44EE-A105-AA119A73FE27"
+		limit="4"
+		interval="3000"
+		height="350"
+		dir="rtl">
+	</sp-slider>
+
+	<sp-links-grid
+		siteurl="http://sp2013.sp2013gm"
+		weburl="en"
+		list="3A88D34D-CE6B-41AE-8E5C-48F44F5F665E"
+		limit="1000"
+		height="70"
+		fontsize="20"
+		dir="rtl">
+	</sp-links-grid>
+
+	<sp-page-brief
+		siteurl="http://sp2013.sp2013gm"
+		weburl="en/media/news"
+		list="DA1A89B9-51EB-40C8-ABCB-E7BA05C4FFFC"
+		pageid="2"
+		imageisend="true"
+		height="400"
+		smallwidth="768"
+		dir="rtl">
+	</sp-page-brief>
+
+	<sp-page-brief
+		siteurl="http://sp2013.sp2013gm"
+		weburl="en/media/news"
+		list="DA1A89B9-51EB-40C8-ABCB-E7BA05C4FFFC"
+		pageid="3"
+		imageisend="false"
+		height="400"
+		smallwidth="768"
+		backgroundcolor="rgb(8, 46, 109)"
+		textcolor="#fff"
+		dir="rtl">
+	</sp-page-brief>
+
+	<sp-cards
+		siteurl="http://sp2013.sp2013gm"
+		weburl="en/media/news"
+		list="DA1A89B9-51EB-40C8-ABCB-E7BA05C4FFFC"
+		limit="4"
+		smallwidth="768"
+		height="350"
+		dir="rtl">
+	</sp-cards>
+</body>
+</html>

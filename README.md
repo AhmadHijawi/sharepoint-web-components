@@ -1,6 +1,6 @@
 # SharePoint Web Components
 
-A collection of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that are designed to be used in SharePoint 2013-2019/Online sites as isolated components, all components are build and compiled in [Svelte](https://svelte.dev/) to provide maximum performance and because [Svelte is the best](https://insights.stackoverflow.com/survey/2021#web-frameworks)
+A collection of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) designed for SharePoint 2013-2019/Online sites as isolated components, these components are build and compiled in [Svelte](https://svelte.dev/) to provide maximum performance and because [Svelte is the best](https://insights.stackoverflow.com/survey/2021#web-frameworks)
 
 ## Usage
 
@@ -14,6 +14,38 @@ In your masterpage:
 .
     <script defer src='/Style Library/swc/bundle.js'></script>
 </head>
+```
+
+Then in your pages you can add the components as html elements using a ScriptEditorWebPart (Edit page > Insert > Embed Code)
+
+### Images Slider
+
+#### Usage
+
+```html
+<sp-slider
+    siteurl="<site collection url>"
+    weburl="<web url relative to site collection>"
+    list="<list ID>"
+    limit="<number limit>"
+    interval="<number of milliseconds>"
+    height="<height in pixels>"
+    dir="<rtl | ltr>">
+</sp-slider>
+```
+
+#### Example
+
+```html
+<sp-slider
+    siteurl="http://sp2013.sp2013gm"
+    weburl="en"
+    list="298968AA-09EC-44EE-A105-AA119A73FE27"
+    limit="4"
+    interval="3000"
+    height="350"
+    dir="rtl">
+</sp-slider>
 ```
 
 ## Get started

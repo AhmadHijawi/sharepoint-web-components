@@ -16,9 +16,13 @@ export let smallwidth:number = 576
 export let mediumwidth:number = 768
 export let orderField = 'ID'
 export let orderDirection = 'desc'
+export let datefromfield:string
+export let datetofield:string
 
 let fullWidth:number = 1
 let count:number
+let fields = ['Title','FileRef','FieldValuesAsHtml']
+let pages:any[] = []
 
 $: {
     count = (limit <= 0 || limit > 8) ? 4 : limit;
@@ -31,11 +35,10 @@ $: {
 
 $: layout = fullWidth <= smallwidth ? 1 : (fullWidth <= mediumwidth ? Math.min(count, 3) : Math.min(count, 6));
 
-let fields = 'Title,FileRef,ArticleStartDate,FieldValuesAsHtml'
-let pages:any[] = []
+$: allFields = fields.concat(datefromfield, datetofield).filter(f => {return f})
 
 onMount(async () => {
-    var pagesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${fields}&$top=${count}&$filter=${filter}&$orderby=${orderField} ${orderDirection}`, options)
+    var pagesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${allFields.join(',')}&$top=${count}&$filter=${filter}&$orderby=${orderField} ${orderDirection}`, options)
     pages = (await pagesRes.json()).d.results;
     
     for(var i = 0; i < pages.length; i++){
@@ -56,7 +59,7 @@ onMount(async () => {
             <a class="card" href="{`${siteurl}${page.FileRef}`}" style="height: {height}px; background-image: url('{page.imageUrl}');">
                 <div class="content">
                     <h4>{page.Title}</h4>
-                    <p>{new Date(page.ArticleStartDate).toLocaleDateString()}</p>
+                    <p>{new Date(page[datefromfield]).toLocaleDateString()} {datetofield ? ` - ${new Date(page[datefromfield]).toLocaleDateString()}` : ''}</p>
                 </div>
             </a>
         </div>

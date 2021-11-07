@@ -20,7 +20,7 @@ let fullWidth:number = 1
 let page:any = {}
 
 $: isMobile = fullWidth <= smallwidth
-$: imageWidthPercentage = isMobile ? 100 : 30
+$: imageWidthPercentage = isMobile ? 100 : 40
 $: float = imageisend !== 'false' ? (dir === 'rtl' ? 'left' : 'right') : (dir === 'ltr' ? 'left' : 'right')
 
 onMount(async () => {
@@ -34,7 +34,7 @@ onMount(async () => {
 
 </script>
 
-<div class="page {dir}" dir="{dir}" bind:clientWidth="{fullWidth}" style="height: {isMobile ? 'auto' : height}px; background-color: {backgroundcolor}">
+<div class="page {dir}" dir="{dir}" bind:clientWidth="{fullWidth}" style="height: {isMobile ? 'auto' : height + 'px'}; background-color: {backgroundcolor}">
     <div class="image-box" style="float: {float}; width: {imageWidthPercentage}%;">
         <img src="{page.imageUrl}" alt="{page.Title}" style=""/>
     </div>
@@ -49,7 +49,7 @@ onMount(async () => {
 
 <style>
     .page {
-        padding: 50px 1%;
+        padding: 25px 1%;
         box-sizing: border-box;
         margin-bottom: 14px;
     }

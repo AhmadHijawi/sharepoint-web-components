@@ -9,9 +9,9 @@ Upload [bundle.js](https://raw.githubusercontent.com/AhmadHijawi/sharepoint-web-
 In your masterpage:
 
 ```html
-.
-.
-.
+    .
+    .
+    .
     <script defer src='/Style Library/swc/bundle.js'></script>
 </head>
 ```
@@ -172,11 +172,50 @@ npm install
 npm run dev
 ```
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src/components`, save it, and reload the page to see your changes.
 
 By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
 
 If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
+
+### Adding new component
+
+In `src/components` create new svelte component file `coolComponent.svelte`:
+```html
+<svelte:options tag="sp-cool-component"></svelte:options>
+
+<script lang="ts">
+export let name:string = 'My Name'
+</script>
+
+<h1>{`hello ${name} from cool component`}</h1>
+
+<style>
+    h1 {
+        color: #f0f
+    }
+</style>
+```
+
+Import your component in `src/main.ts`
+
+```typescript
+import Slider from './components/slider.svelte'
+import Cards from './components/cards.svelte'
+import LinksGrid from './components/linksGrid.svelte'
+import PageBrief from './components/pageBrief.svelte'
+
+//Add
+import CoolComponent from './components/coolComponent.svelte'
+
+export default [Slider, Cards, LinksGrid, PageBrief, /*Export it to be compiled*/ CoolComponent];
+```
+
+Then use it in your pages:
+
+```html
+<sp-cool-component name="World"></sp-cool-component>
+```
 
 ## Building and running in production mode
 
@@ -185,5 +224,3 @@ To create an optimised version of the app:
 ```bash
 npm run build
 ```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).

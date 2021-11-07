@@ -48,9 +48,12 @@ onMount(async () => {
 </div>
 
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
     .page {
         padding: 25px 1%;
-        box-sizing: border-box;
         margin-bottom: 14px;
     }
 
@@ -58,16 +61,17 @@ onMount(async () => {
         display: block;
         border: none;
         border-radius: 10px;
-        width: 100%;
+        margin: 0 auto;
+        max-width: 100%;
+        max-height: 100%;
     }
 
     .image-box {
         padding: 0 1%;
-        box-sizing: border-box;
+        height: 100%;
     }
 
     .content-box {
         padding: 0 1%;
-        box-sizing: border-box;
     }
 </style>

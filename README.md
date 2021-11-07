@@ -1,7 +1,17 @@
 # SharePoint Web Components
 
-A collection of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that are designed to be used in SharePoint 2013-2019/Online sites as isolated components, 
+A collection of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that are designed to be used in SharePoint 2013-2019/Online sites as isolated components, all components are build and compiled in [Svelte](https://svelte.dev/) to provide maximum performance and because [Svelte is the best](https://insights.stackoverflow.com/survey/2021#web-frameworks)
 
+## Usage
+
+Upload [bundle.js](https://raw.githubusercontent.com/AhmadHijawi/sharepoint-web-components/main/public/build/bundle.js) to /Style Library/swc
+In your masterpage:
+
+```html
+...
+    <script defer src='/Style Library/swc/bundle.js'></script>
+</head>
+```
 
 ## Get started
 

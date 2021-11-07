@@ -8,7 +8,7 @@ import options from '../service'
 export let siteurl:string
 export let weburl:string
 export let list:string
-export let filter = 'Active eq 1'
+export let filter:string = 'ID gt 0'
 export let limit:number = 1000000
 export let dir:string
 export let height:number = 400

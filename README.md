@@ -30,6 +30,7 @@ Then in your pages you can add the components as html elements using a ScriptEdi
     limit="<number limit>"
     interval="<number of milliseconds>"
     height="<height in pixels>"
+    filter="<[SharePoint REST Api filter](https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests#odata-query-operators-supported-in-the-sharepoint-rest-service)>"
     dir="<rtl | ltr>">
 </sp-slider>
 ```
@@ -38,12 +39,13 @@ Then in your pages you can add the components as html elements using a ScriptEdi
 
 ```html
 <sp-slider
-    siteurl="http://sp2013.sp2013gm"
+    siteurl="https://our-sharepoint-site"
     weburl="en"
     list="298968AA-09EC-44EE-A105-AA119A73FE27"
     limit="4"
     interval="3000"
     height="350"
+    filter="Active eq 1"
     dir="rtl">
 </sp-slider>
 ```

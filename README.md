@@ -1,18 +1,18 @@
 # SharePoint Web Components
 
-A collection of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) designed for SharePoint 2013-2019/Online sites as isolated components, these components are build and compiled in [Svelte](https://svelte.dev/) to provide maximum performance and because [Svelte is the best](https://insights.stackoverflow.com/survey/2021#web-frameworks)
+A collection of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) designed for SharePoint 2013-2019/Online sites as isolated components, they will inherit the font family of the host page, other than that, the styles and scripts of these components will not effect or be effected by the host page's styles and scripts, as well as other copies of the same component, these components are build and compiled using [Svelte](https://svelte.dev/) to be lightweight, provide maximum performance and because [Svelte is awesome](https://insights.stackoverflow.com/survey/2021#web-frameworks)
 
 ## Usage
 
-Upload [bundle.js](https://raw.githubusercontent.com/AhmadHijawi/sharepoint-web-components/main/public/build/bundle.js) to /Style Library/swc
+Upload [bundle.js](https://raw.githubusercontent.com/AhmadHijawi/sharepoint-web-components/main/public/build/bundle.js) to /Style Library/spwc
 
-In your masterpage:
+In your masterpage add:
 
 ```html
     .
     .
     .
-    <script defer src='/Style Library/swc/bundle.js'></script>
+    <script defer src='/Style Library/spwc/bundle.js'></script>
 </head>
 ```
 

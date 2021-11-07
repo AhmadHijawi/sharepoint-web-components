@@ -5,15 +5,16 @@ import { onMount } from 'svelte';
 
 import options from '../service'
 
-export let siteurl:string
 export let weburl:string
 export let list:string
+export let siteurl:string = ''
 export let pageid:number
-export let dir:string
-export let imageisend:string
+export let dir:string = 'ltr'
+export let imageisend:string = 'true'
 export let height:number = 400
 export let smallwidth:number = 768
-export let backgroundcolor:string = '#fff'
+export let imagefield:string = 'PublishingRollupImage'
+export let backgroundcolor:string = 'transparent'
 export let textcolor:string = '#333'
 
 let fullWidth:number = 1
@@ -28,7 +29,7 @@ onMount(async () => {
     page = (await pagesRes.json()).d;
 
     var element = document.createElement('DIV')
-    element.innerHTML = page.PublishingRollupImage
+    element.innerHTML = page[imagefield]
     page.imageUrl = `${siteurl}${element.firstElementChild.attributes['src'].nodeValue}`;
 })
 

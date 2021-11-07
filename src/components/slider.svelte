@@ -5,12 +5,12 @@ import { onMount } from 'svelte';
 
 import options from '../service'
 
-export let siteurl:string
 export let weburl:string
 export let list:string
+export let siteurl:string = ''
 export let filter:string = 'ID gt 0'
 export let limit:number = 1000000
-export let dir:string
+export let dir:string = 'ltr'
 export let height:number = 400
 export let interval:number = 5000
 export let orderField = 'ID'

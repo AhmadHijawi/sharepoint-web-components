@@ -24,14 +24,16 @@ Then in your pages you can add the components as html elements using a ScriptEdi
 
 ```html
 <sp-slider
-    siteurl="<site collection url>"
-    weburl="<web url relative to site collection>"
-    list="<list ID>"
-    limit="<number limit>"
-    interval="<number of milliseconds>"
-    height="<height in pixels>"
-    filter="<[SharePoint REST Api filter](https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests#odata-query-operators-supported-in-the-sharepoint-rest-service)>"
-    dir="<rtl | ltr>">
+    weburl="<web url relative to site collection *required>"
+    list="<list ID *required>"
+    siteurl="<site collection url (default: '')>"
+    limit="<number limit (default: 1000000)>"
+    interval="<number of milliseconds (default: 5000)>"
+    height="<height in pixels (default: 400)>"
+    orderField="<field internal name (default: 'ID')>"
+    orderDirection="<asc | desc (default: 'desc')>"
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')>" //https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests
+    dir="<rtl | ltr (default: ltr)>">
 </sp-slider>
 ```
 
@@ -40,22 +42,127 @@ Then in your pages you can add the components as html elements using a ScriptEdi
 ```html
 <sp-slider
     siteurl="https://our-sharepoint-site"
-    weburl="en"
+    weburl="ar"
     list="298968AA-09EC-44EE-A105-AA119A73FE27"
     limit="4"
     interval="3000"
     height="350"
     filter="Active eq 1"
+    orderField="slideOrder"
     dir="rtl">
 </sp-slider>
 ```
 
-## Get started
+### Links Grid
+
+#### Usage
+
+```html
+<sp-links-grid
+    weburl="<web url relative to site collection *required>"
+    list="<list ID *required>"
+    siteurl="<site collection url (default: '')>"
+    limit="<number limit (default: 1000000)>"
+    height="<link height in pixels (default: 35)>"
+    orderField="<field internal name (default: 'ID')>"
+    orderDirection="<asc | desc (default: 'desc')>"
+    mediumwidth="<medium breakpoint (default: 768)>"
+    fontsize="<link text font size (default: 16)>"
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')>" //https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests
+    dir="<rtl | ltr (default: ltr)>">
+</sp-links-grid>
+```
+
+#### Example
+
+```html
+<sp-links-grid
+    siteurl="https://our-sharepoint-site"
+    weburl="ar"
+    list="3A88D34D-CE6B-41AE-8E5C-48F44F5F665E"
+    limit="20"
+    height="70"
+    filter="Active eq 1"
+    fontsize="20"
+    dir="rtl">
+</sp-links-grid>
+```
+
+### Page Brief
+
+#### Usage
+
+```html
+<sp-page-brief
+    weburl="<web url relative to site collection *required>"
+    list="<list ID *required>"
+    pageid="<page ID *required>"
+    siteurl="<site collection url (default: '')>"
+    height="<card height in pixels (default: 400)>"
+    smallwidth="<small breakpoint (default: 768)>"
+    imageisend="<true | false (default: true)>"
+    imagefield="<image field internal name (default: 'PublishingRollupImage')>"
+    backgroundcolor="<css color (default: 'transparent')>"
+    textcolor="<css color (default: '#333')>"
+    dir="<rtl | ltr (default: ltr)>">
+</sp-page-brief>
+```
+
+#### Example
+
+```html
+<sp-page-brief
+    siteurl="https://our-sharepoint-site"
+    weburl="ar/news"
+    list="DA1A89B9-51EB-40C8-ABCB-E7BA05C4FFFC"
+    pageid="2"
+    dir="rtl">
+</sp-page-brief>
+```
+
+### Cards
+
+#### Usage
+
+```html
+<sp-page-brief
+    weburl="<web url relative to site collection *required>"
+    list="<list ID *required>"
+    siteurl="<site collection url (default: '')>"
+    height="<card height in pixels (default: 400)>"
+    limit="<number limit (default: 4)>"
+    smallwidth="<small breakpoint (default: 768)>"
+    mediumwidth="<medium breakpoint (default: 768)>"
+    imagefield="<image field internal name (default: 'PublishingRollupImage')>"
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')>"  //https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests
+    orderField="<field internal name (default: 'ID')>"
+    orderDirection="<asc | desc (default: 'desc')>"
+    datefromfield="<start date field internal name (default: 'ArticleStartDate')>"
+    datetofield="<optional end date field internal name (default: '')>"
+    dir="<rtl | ltr (default: ltr)>">
+</sp-page-brief>
+```
+
+#### Example
+
+```html
+<sp-cards
+    siteurl="https://our-sharepoint-site"
+    weburl="ar/news"
+    list="DA1A89B9-51EB-40C8-ABCB-E7BA05C4FFFC"
+    dir="rtl">
+</sp-cards>
+```
+
+
+## Customize
+
+Clone or download this repository
 
 Install the dependencies...
 
 ```bash
-cd svelte-app
+cd sharepoint-web-components
 npm install
 ```
 
@@ -80,62 +187,3 @@ npm run build
 ```
 
 You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
-
-```bash
-node scripts/setupTypeScript.js
-```
-
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need to set up `@rollup/plugin-alias` to tell Rollup to resolve the aliases. For more info, see [this StackOverflow question](https://stackoverflow.com/questions/63427935/setup-tsconfig-path-in-svelte).
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```

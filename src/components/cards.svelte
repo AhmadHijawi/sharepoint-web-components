@@ -5,19 +5,20 @@ import { onMount } from 'svelte';
 
 import options from '../service'
 
-export let siteurl:string
 export let weburl:string
 export let list:string
+export let siteurl:string = ''
 export let filter = 'ID ne 0'
-export let limit:number
-export let dir:string
+export let limit:number = 4
+export let dir:string = 'ltr'
 export let height:number = 400
 export let smallwidth:number = 576
 export let mediumwidth:number = 768
 export let orderField = 'ID'
 export let orderDirection = 'desc'
-export let datefromfield:string
-export let datetofield:string
+export let imagefield:string = 'PublishingRollupImage'
+export let datefromfield:string = 'ArticleStartDate'
+export let datetofield:string = ''
 
 let fullWidth:number = 1
 let count:number
@@ -46,7 +47,7 @@ onMount(async () => {
         var fieldValues = (await imgRes.json()).d
     
         var element = document.createElement('DIV')
-        element.innerHTML = fieldValues.PublishingRollupImage
+        element.innerHTML = fieldValues[imagefield]
         pages[i].imageUrl = `${siteurl}${element.firstElementChild.attributes['src'].nodeValue}`;
     }
 })

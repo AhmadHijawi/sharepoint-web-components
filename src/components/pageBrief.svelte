@@ -27,14 +27,12 @@ $: float = imageisend !== 'false' ? (dir === 'rtl' ? 'left' : 'right') : (dir ==
 onMount(async () => {
     var pagesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items(${pageid})/FieldValuesAsHtml`, options)
     page = (await pagesRes.json()).d;
-
-    var element = document.createElement('DIV')
-    element.innerHTML = page[imagefield]
-    page.imageUrl = `${siteurl}${element.firstElementChild.attributes['src'].nodeValue}`;
+    page.imageUrl = options.extractImageUrl(siteurl, page[imagefield])
 })
 
 </script>
 
+{#if page && page.imageUrl}
 <div class="page {dir}" dir="{dir}" bind:clientWidth="{fullWidth}" style="height: {isMobile ? 'auto' : height + 'px'}; background-color: {backgroundcolor}">
     <div class="image-box" style="float: {float}; width: {imageWidthPercentage}%;">
         <img src="{page.imageUrl}" alt="{page.Title}" style=""/>
@@ -47,6 +45,7 @@ onMount(async () => {
     </div>
     <div style="clear: both;"></div>
 </div>
+{/if}
 
 <style>
     * {

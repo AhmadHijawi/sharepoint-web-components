@@ -25,7 +25,7 @@ let count:number
 $: {
     count = (limit <= 0 || limit > 8) ? 4 : limit;
 
-    if(limit <= 0 || limit > 8 ? 4 : limit)
+    if(limit <= 0 || limit > 8)
     {
         console.log('sp-slider: limit should between 0 and 8')
     }

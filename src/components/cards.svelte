@@ -25,14 +25,7 @@ let count:number
 let fields = ['Title','FileRef','FieldValuesAsHtml']
 let pages:any[] = []
 
-$: {
-    count = (limit <= 0 || limit > 8) ? 4 : limit;
-
-    if(limit <= 0 || limit > 8 ? 4 : limit)
-    {
-        console.log('sp-cards: limit should between 0 and 8')
-    }
-} 
+$: count = limit || 4
 
 $: layout = fullWidth <= smallwidth ? 1 : (fullWidth <= mediumwidth ? Math.min(count, 3) : Math.min(count, 6));
 
@@ -45,10 +38,7 @@ onMount(async () => {
     for(var i = 0; i < pages.length; i++){
         var imgRes = await fetch(`${pages[i].FieldValuesAsHtml.__deferred.uri}`, options)
         var fieldValues = (await imgRes.json()).d
-    
-        var element = document.createElement('DIV')
-        element.innerHTML = fieldValues[imagefield]
-        pages[i].imageUrl = `${siteurl}${element.firstElementChild.attributes['src'].nodeValue}`;
+        pages[i].imageUrl = options.extractImageUrl(siteurl, fieldValues[imagefield])
     }
 })
 
@@ -56,6 +46,7 @@ onMount(async () => {
 
 <div class="cards {dir}" dir="{dir}" bind:clientWidth="{fullWidth}">
     {#each pages as page}
+        {#if page.imageUrl}
         <div class="card-column" style="width: {100 / layout}%;">
             <a class="card" href="{`${siteurl}${page.FileRef}`}" style="height: {height}px; background-image: url('{page.imageUrl}');">
                 <div class="content">
@@ -64,6 +55,7 @@ onMount(async () => {
                 </div>
             </a>
         </div>
+        {/if}
     {/each}
     <div style="clear: both;"></div>
 </div>

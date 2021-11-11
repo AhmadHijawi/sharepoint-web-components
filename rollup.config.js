@@ -40,7 +40,6 @@ export default {
 	},
 	plugins: [
 		svelte({
-			customElement: true,
 			preprocess: sveltePreprocess({ sourceMap: !production }),
 			compilerOptions: {
 				customElement: true,

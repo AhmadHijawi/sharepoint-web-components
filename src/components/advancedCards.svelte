@@ -17,7 +17,8 @@ export let mediumwidth:number = 768
 export let orderField = 'ID'
 export let orderDirection = 'desc'
 export let imagefield:string = 'PublishingRollupImage'
-export let datefilterenabled:string = 'true'
+export let datefilterfromtext:string = 'from'
+export let datefiltertotext:string = 'to'
 export let datefromfield:string = 'ArticleStartDate'
 export let datetofield:string = ''
 
@@ -28,9 +29,11 @@ let pages:any[] = []
 
 let filtersList:string[] = []
 
+let showFromCalendar = false
 let fromStr:string
 $: from = new Date(fromStr || null)
 
+let showToCalendar = false
 let toStr:string
 $: to = new Date(toStr || null)
 
@@ -85,25 +88,50 @@ onMount(() => {
 
 <div>
     <div class="cards {dir}" dir="{dir}" bind:clientWidth="{fullWidth}">
-        <div class="title"><slot></slot></div>
-        {#if datefilterenabled === 'true'}
-        <div class="filters">
-            <i-calendar color="#333"></i-calendar>
-            <input type="date" bind:value="{fromStr}" />
-            <input type="date" bind:value="{toStr}" />
+        <div class="header">
+            <div class="title"><slot></slot></div>
+            <div class="filters">
+                {datefilterfromtext}
+                <button on:click="{() => {showFromCalendar = !showFromCalendar; showToCalendar = false;}}">
+                    <i-calendar width="30" height="30"></i-calendar>
+                    <span>{fromStr || ''}</span>
+                </button>
+                {datefiltertotext}
+                <button on:click="{() => {showToCalendar = !showToCalendar; showFromCalendar = false;}}">
+                    <i-calendar width="30" height="30"></i-calendar>
+                    <span>{toStr || ''}</span>
+                </button>
+            </div>
+            <sp-calendar
+                style="display: {showFromCalendar ? 'block' : 'none'};"
+                value="{fromStr}"
+                on:change="{(e) => {
+                    fromStr = e.detail;
+                    showFromCalendar = showToCalendar = false;
+                }}">
+            </sp-calendar>
+
+            <sp-calendar 
+                style="display: {showToCalendar ? 'block' : 'none'};"
+                value="{toStr}"
+                on:change="{(e) => {
+                        toStr = e.detail;
+                        showFromCalendar = showToCalendar = false;
+                    }}">
+            </sp-calendar>
+            <div style="clear: both;"></div>
+        </div>
+        {#each pages as page}
+        {#if page.imageUrl}
+        <div class="card-column" style="width: {100 / layout}%;">
+            <a class="card" href="{`${siteurl}${page.FileRef}`}" style="height: {height}px; background-image: url('{page.imageUrl}');">
+                <div class="content">
+                    <h4>{page.Title}</h4>
+                    <p>{new Date(page[datefromfield]).toLocaleDateString()} {datetofield ? ` - ${new Date(page[datefromfield]).toLocaleDateString()}` : ''}</p>
+                </div>
+            </a>
         </div>
         {/if}
-        {#each pages as page}
-            {#if page.imageUrl}
-            <div class="card-column" style="width: {100 / layout}%;">
-                <a class="card" href="{`${siteurl}${page.FileRef}`}" style="height: {height}px; background-image: url('{page.imageUrl}');">
-                    <div class="content">
-                        <h4>{page.Title}</h4>
-                        <p>{new Date(page[datefromfield]).toLocaleDateString()} {datetofield ? ` - ${new Date(page[datefromfield]).toLocaleDateString()}` : ''}</p>
-                    </div>
-                </a>
-            </div>
-            {/if}
         {/each}
         <div style="clear: both;"></div>
     </div>
@@ -112,6 +140,58 @@ onMount(() => {
 <style>
     .cards {
         margin: 0 -7px 0 -7px;
+    }
+
+    .header {
+        height: 70px;
+        padding: 0 7px 0 7px;
+    }
+
+    .title {
+        height: 100%;
+        float: left;
+    }
+
+    .rtl .title {
+        float: right;
+    }
+
+    .filters {
+        font-size: 1.3em;
+        padding-top: 13px;
+        float: right;
+    }
+
+    .rtl .filters {
+        float: left;
+    }
+
+    .filters button {
+        transition: all 0.1s;
+        border: none;
+        background: none;
+        cursor: pointer;
+        box-shadow: 0 0 3px rgb(0 0 0 / 20%);
+    }
+
+    .filters button:hover {
+        box-shadow: 0 0 3px rgb(0 0 0 / 30%);
+    }
+
+    .filters button:active {
+        box-shadow: 0 0 1px rgb(0 0 0 / 60%);
+    }
+
+    .filters button * {
+        vertical-align: middle;
+    }
+
+    sp-calendar {
+        position: absolute;
+        left: 0;
+        top: 50px;
+        background: #fff;
+        z-index: 2;
     }
 
     .card-column {

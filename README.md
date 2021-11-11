@@ -125,7 +125,7 @@ Then in your pages you can add the components as html elements using a ScriptEdi
 #### Usage
 
 ```html
-<sp-page-brief
+<sp-cards
     weburl="<web url relative to site collection *required>"
     list="<list ID *required>"
     siteurl="<site collection url (default: '')>"
@@ -140,7 +140,7 @@ Then in your pages you can add the components as html elements using a ScriptEdi
     datefromfield="<start date field internal name (default: 'ArticleStartDate')>"
     datetofield="<optional end date field internal name (default: '')>"
     dir="<rtl | ltr (default: ltr)>">
-</sp-page-brief>
+</sp-cards>
 ```
 
 #### Example
@@ -152,6 +152,48 @@ Then in your pages you can add the components as html elements using a ScriptEdi
     list="DA1A89B9-51EB-40C8-ABCB-E7BA05C4FFFC"
     dir="rtl">
 </sp-cards>
+```
+
+### Advanced Cards
+
+#### Usage
+
+```html
+<sp-advanced-cards
+    weburl="<web url relative to site collection *required>"
+    list="<list ID *required>"
+    siteurl="<site collection url (default: '')>"
+    height="<card height in pixels (default: 400)>"
+    limit="<number limit (default: 4)>"
+    smallwidth="<small breakpoint (default: 768)>"
+    mediumwidth="<medium breakpoint (default: 768)>"
+    imagefield="<image field internal name (default: 'PublishingRollupImage')>"
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')>"  //https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests
+    orderField="<field internal name (default: 'ID')>"
+    orderDirection="<asc | desc (default: 'desc')>"
+    datefilterfromtext="<string (default: 'from')>"
+    datefiltertotext="<string (default: 'to')>"
+    datefromfield="<start date field internal name (default: 'ArticleStartDate')>"
+    datetofield="<optional end date field internal name (default: '')>"
+    dir="<rtl | ltr (default: ltr)>">
+    <slot></slot>
+</sp-advanced-cards>
+```
+
+#### Example
+
+```html
+<sp-advanced-cards
+    siteurl="https://our-sharepoint-site"
+    weburl="ar/news"
+    list="DA1A89B9-51EB-40C8-ABCB-E7BA05C4FFFC"
+    datefilterfromtext="From"
+    datefiltertotext="To"
+    dir="rtl">
+    <h2>
+        News
+    </h2>
+</sp-advanced-cards>
 ```
 
 

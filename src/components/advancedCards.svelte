@@ -14,17 +14,22 @@ export let dir:string = 'ltr'
 export let height:number = 400
 export let smallwidth:number = 576
 export let mediumwidth:number = 768
-export let orderField = 'ID'
+export let orderField = 'ArticleStartDate'
 export let orderDirection = 'desc'
 export let imagefield:string = 'PublishingRollupImage'
-export let datefilterfromtext:string = 'from'
-export let datefiltertotext:string = 'to'
+export let datefilterfromtext:string = 'From'
+export let datefiltertotext:string = 'To'
+export let nexttext:string = 'Next'
+export let prevtext:string = 'Previous'
 export let datefromfield:string = 'ArticleStartDate'
 export let datetofield:string = ''
 
 let fullWidth:number = 1
 let count:number
 let fields = ['Title','FileRef','FieldValuesAsHtml']
+let prevUrl:string
+let nextUrl:string
+let currentUrl:string
 let pages:any[] = []
 
 let filtersList:string[] = []
@@ -58,6 +63,9 @@ $: {
 $: filters = `(${filtersList.join(') and (')})`
 
 $: {
+    currentUrl = null
+    prevUrl = null
+    nextUrl = null
     fetchCards(filters)
 }
 
@@ -69,8 +77,14 @@ $: allFields = fields.concat(datefromfield, datetofield).filter(f => {return f})
 
 const fetchCards = async (spFilters:string) => {
     if(filtersList && filtersList.length > 0 && allFields && allFields.length > 0){
-        var pagesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${allFields.join(',')}&$top=${count}&$filter=${spFilters}&$orderby=${orderField} ${orderDirection}`, options)
-        pages = (await pagesRes.json()).d.results;
+        currentUrl = currentUrl || `${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${allFields.join(',')}&$top=${count}&$filter=${spFilters}&$orderby=${orderField} ${orderDirection}`
+        var pagesRes = await fetch(currentUrl, options)
+        var data = (await pagesRes.json())
+        pages = data.d.results;
+
+        if(data.d.__next){
+            nextUrl = data.d.__next
+        }
         
         for(var i = 0; i < pages.length; i++){
             var imgRes = await fetch(`${pages[i].FieldValuesAsHtml.__deferred.uri}`, options)
@@ -78,6 +92,20 @@ const fetchCards = async (spFilters:string) => {
             pages[i].imageUrl = options.extractImageUrl(siteurl, fieldValues[imagefield])
         }
     }
+}
+
+const fetchPrev = () => {
+    nextUrl = currentUrl
+    currentUrl = prevUrl
+    prevUrl = ''
+    fetchCards(filters)
+}
+
+const fetchNext = () => {
+    prevUrl = currentUrl
+    currentUrl = nextUrl
+    nextUrl = ''
+    fetchCards(filters)
 }
 
 onMount(() => {
@@ -105,6 +133,7 @@ onMount(() => {
             <sp-calendar
                 style="display: {showFromCalendar ? 'block' : 'none'};"
                 value="{fromStr}"
+                maxdate="{toStr}"
                 on:change="{(e) => {
                     fromStr = e.detail;
                     showFromCalendar = showToCalendar = false;
@@ -114,6 +143,7 @@ onMount(() => {
             <sp-calendar 
                 style="display: {showToCalendar ? 'block' : 'none'};"
                 value="{toStr}"
+                mindate="{fromStr}"
                 on:change="{(e) => {
                         toStr = e.detail;
                         showFromCalendar = showToCalendar = false;
@@ -134,6 +164,16 @@ onMount(() => {
         {/if}
         {/each}
         <div style="clear: both;"></div>
+        {#if prevUrl}
+        <span on:click="{() => {fetchPrev()}}" class="paging-link">
+            {prevtext}
+        </span>
+        {/if}
+        {#if nextUrl}
+        <span on:click="{() => {fetchNext()}}" class="paging-link">
+            {nexttext}
+        </span>
+        {/if}
     </div>
 </div>
 
@@ -240,5 +280,22 @@ onMount(() => {
 
     h4 {
         margin: 0;
+    }
+
+    .paging-link {
+        cursor: pointer;
+        margin: 7px;
+        display: inline-block;
+        transition: all 0.1s;
+        padding: 7px 15px;
+        box-shadow: 0 0 3px rgb(0 0 0 / 20%);
+    }
+
+    .paging-link:hover {
+        box-shadow: 0 0 3px rgb(0 0 0 / 30%);
+    }
+
+    .paging-link:active {
+        box-shadow: 0 0 1px rgb(0 0 0 / 60%);
     }
 </style>

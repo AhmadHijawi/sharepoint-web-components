@@ -32,7 +32,7 @@ Then in your pages you can add the components as html elements using a ScriptEdi
     height="<height in pixels (default: 400)>"
     orderField="<field internal name (default: 'ID')>"
     orderDirection="<asc | desc (default: 'desc')>"
-    filter="<SharePoint REST Api filter (default: 'ID gt 0')>" //https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')> see https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests"
     dir="<rtl | ltr (default: ltr)>">
 </sp-slider>
 ```
@@ -68,7 +68,7 @@ Then in your pages you can add the components as html elements using a ScriptEdi
     orderDirection="<asc | desc (default: 'desc')>"
     mediumwidth="<medium breakpoint (default: 768)>"
     fontsize="<link text font size (default: 16)>"
-    filter="<SharePoint REST Api filter (default: 'ID gt 0')>" //https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')> see https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests"
     dir="<rtl | ltr (default: ltr)>">
 </sp-links-grid>
 ```
@@ -134,7 +134,7 @@ Then in your pages you can add the components as html elements using a ScriptEdi
     smallwidth="<small breakpoint (default: 768)>"
     mediumwidth="<medium breakpoint (default: 768)>"
     imagefield="<image field internal name (default: 'PublishingRollupImage')>"
-    filter="<SharePoint REST Api filter (default: 'ID gt 0')>"  //https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')> see https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests"
     orderField="<field internal name (default: 'ID')>"
     orderDirection="<asc | desc (default: 'desc')>"
     datefromfield="<start date field internal name (default: 'ArticleStartDate')>"
@@ -168,7 +168,7 @@ Then in your pages you can add the components as html elements using a ScriptEdi
     smallwidth="<small breakpoint (default: 768)>"
     mediumwidth="<medium breakpoint (default: 768)>"
     imagefield="<image field internal name (default: 'PublishingRollupImage')>"
-    filter="<SharePoint REST Api filter (default: 'ID gt 0')>"  //https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')> see https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests"
     orderField="<field internal name (default: 'ID')>"
     orderDirection="<asc | desc (default: 'desc')>"
     datefilterfromtext="<string (default: 'From')>"

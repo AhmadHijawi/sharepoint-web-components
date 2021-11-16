@@ -1,5 +1,3 @@
-<svelte:options tag="sp-links-grid"></svelte:options>
-
 <script lang="ts">
 import { onMount } from 'svelte';
 
@@ -35,6 +33,8 @@ onMount(async () => {
 })
 
 </script>
+
+<svelte:options tag="sp-links-grid"></svelte:options>
 
 <div class="links {dir}" dir="{dir}" bind:clientWidth="{fullWidth}">
     {#each pages as page}

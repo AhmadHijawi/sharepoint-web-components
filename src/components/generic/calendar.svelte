@@ -1,5 +1,3 @@
-<svelte:options tag="sp-calendar" />
-
 <script lang="ts">
 // export let width = 400
 // export let primarycolor = '#c2002f'
@@ -82,6 +80,9 @@ const selectDate = (day: number) => {
 }
 
 </script>
+
+<svelte:options tag="sp-calendar"></svelte:options>
+
 <div bind:this={el} class="calendar">
     <div class="header">
         <div class="view-title">

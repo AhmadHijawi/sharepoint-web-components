@@ -1,5 +1,3 @@
-<svelte:options tag="sp-page-brief"></svelte:options>
-
 <script lang="ts">
 import { onMount } from 'svelte';
 
@@ -31,6 +29,8 @@ onMount(async () => {
 })
 
 </script>
+
+<svelte:options tag="sp-page-brief"></svelte:options>
 
 {#if page && page.imageUrl}
 <div class="page {dir}" dir="{dir}" bind:clientWidth="{fullWidth}" style="height: {isMobile ? 'auto' : height + 'px'}; background-color: {backgroundcolor}">

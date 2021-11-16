@@ -248,15 +248,19 @@ export let name:string = 'My Name'
 Import your component in `src/main.ts`
 
 ```typescript
-import Slider from './components/slider.svelte'
-import Cards from './components/cards.svelte'
-import LinksGrid from './components/linksGrid.svelte'
-import PageBrief from './components/pageBrief.svelte'
+.
+.
+.
 
 //Add
 import CoolComponent from './components/coolComponent.svelte'
 
-export default [Slider, Cards, LinksGrid, PageBrief, /*Export it to be compiled*/ CoolComponent];
+export default [
+    CoolComponent //Export it to be compiled
+    .
+    .
+    .
+];
 ```
 
 Then use it in your pages:

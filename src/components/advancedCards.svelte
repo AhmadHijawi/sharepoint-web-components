@@ -1,5 +1,3 @@
-<svelte:options tag="sp-advanced-cards"></svelte:options>
-
 <script lang="ts">
 import { onMount } from 'svelte';
 
@@ -113,6 +111,8 @@ onMount(() => {
 })
 
 </script>
+
+<svelte:options tag="sp-advanced-cards"></svelte:options>
 
 <div>
     <div class="cards {dir}" dir="{dir}" bind:clientWidth="{fullWidth}">

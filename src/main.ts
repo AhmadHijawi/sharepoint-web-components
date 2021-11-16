@@ -21,4 +21,5 @@ export default [
     IconChevronDown,
     IconChevronRight,
     IconChevronLeft,
-    Calendar];
+    Calendar
+];

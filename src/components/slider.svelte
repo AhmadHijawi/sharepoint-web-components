@@ -1,5 +1,3 @@
-<svelte:options tag="sp-slider"></svelte:options>
-
 <script lang="ts">
 import { onMount } from 'svelte';
 
@@ -42,6 +40,8 @@ onMount(async () => {
     }, interval)
 })
 </script>
+
+<svelte:options tag="sp-slider"></svelte:options>
 
 <div class="slider {dir}" dir="{dir}" style="height: {height || 400}px;" on:mouseenter="{() => {mouseIsIn = true}}" on:mouseleave="{() => {mouseIsIn = false}}">
     <div class="dots" style="top: {(height || 400) - 50}px;">

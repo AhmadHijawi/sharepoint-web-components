@@ -8,9 +8,24 @@
 
 	<link rel='icon' type='image/png' href='/favicon.png'>
 	<script defer src='/build/bundle.js'></script>
+
+	<style>
+		body {
+			overflow-x: hidden;
+		}
+	</style>
 </head>
 
 <body>
+	<sp-map
+		siteurl="http://sp2013.sp2013gm"
+		weburl="en"
+		list="26522569-F3AC-45E7-BD47-59B680731D15"
+		lat="24.43"
+		long="54.41"
+		height="350">
+	</sp-map>
+
 	<sp-slider
 		siteurl="http://sp2013.sp2013gm"
 		weburl="en"
@@ -64,11 +79,21 @@
 		limit="4"
 		smallwidth="768"
 		height="350"
+		columns="2"
+		datefilterfromtext="من"
+		datefiltertotext="إلى"
+		nexttext="التالي"
+		prevtext="السابق"
 		datefromfield="ArticleStartDate"
+		showheader="false"
+		showpaging="false"
 		dir="rtl">
+		<h2>
+			الأخبار
+		</h2>
 	</sp-cards>
 
-	<sp-advanced-cards
+	<sp-cards
 		siteurl="http://sp2013.sp2013gm"
 		weburl="en/media/news"
 		list="DA1A89B9-51EB-40C8-ABCB-E7BA05C4FFFC"
@@ -84,6 +109,13 @@
 		<h2>
 			الأخبار
 		</h2>
-	</sp-advanced-cards>
+	</sp-cards>
+
+	<sp-accordion
+		siteurl="http://sp2013.sp2013gm"
+		weburl="en"
+		list="9B1891B3-FE78-40F5-94F9-0E65570F6C87"
+		dir="rtl">
+	</sp-accordion>
 </body>
 </html>

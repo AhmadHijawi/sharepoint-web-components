@@ -16,9 +16,10 @@ In your masterpage add:
 </head>
 ```
 
-Then in your pages you can add the components as html elements using a ScriptEditorWebPart (Edit page > Insert > Embed Code)
+Then in your pages you can add the components as html elements using a ScriptEditorWebPart (Edit page > Insert > Embed Code).
 
 ### Images Slider
+A full width image carousel, requires an image library with the additional fields: (Title:String, Subtitle:String, Url:String).
 
 #### Usage
 
@@ -54,6 +55,7 @@ Then in your pages you can add the components as html elements using a ScriptEdi
 ```
 
 ### Links Grid
+A full width links grid, requires a custom list with the following fields: (Title: String, Url:String , CssColor:String, Columns:Number).
 
 #### Usage
 
@@ -89,6 +91,7 @@ Then in your pages you can add the components as html elements using a ScriptEdi
 ```
 
 ### Page Brief
+A full width page brief, requires a publishing page.
 
 #### Usage
 
@@ -121,45 +124,12 @@ Then in your pages you can add the components as html elements using a ScriptEdi
 ```
 
 ### Cards
+A full width page cards with optional header, date range filter and results paging, requires the "Pages" library of a SharePoint publishing site.
 
 #### Usage
 
 ```html
 <sp-cards
-    weburl="<web url relative to site collection *required>"
-    list="<list ID *required>"
-    siteurl="<site collection url (default: '')>"
-    height="<card height in pixels (default: 400)>"
-    limit="<number limit (default: 4)>"
-    smallwidth="<small breakpoint (default: 768)>"
-    mediumwidth="<medium breakpoint (default: 768)>"
-    imagefield="<image field internal name (default: 'PublishingRollupImage')>"
-    filter="<SharePoint REST Api filter (default: 'ID gt 0')> see https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests"
-    orderField="<field internal name (default: 'ID')>"
-    orderDirection="<asc | desc (default: 'desc')>"
-    datefromfield="<start date field internal name (default: 'ArticleStartDate')>"
-    datetofield="<optional end date field internal name (default: '')>"
-    dir="<rtl | ltr (default: ltr)>">
-</sp-cards>
-```
-
-#### Example
-
-```html
-<sp-cards
-    siteurl="https://our-sharepoint-site"
-    weburl="ar/news"
-    list="DA1A89B9-51EB-40C8-ABCB-E7BA05C4FFFC"
-    dir="rtl">
-</sp-cards>
-```
-
-### Advanced Cards
-
-#### Usage
-
-```html
-<sp-advanced-cards
     weburl="<web url relative to site collection *required>"
     list="<list ID *required>"
     siteurl="<site collection url (default: '')>"
@@ -179,16 +149,17 @@ Then in your pages you can add the components as html elements using a ScriptEdi
     datetofield="<optional end date field internal name (default: '')>"
     dir="<rtl | ltr (default: ltr)>">
     <slot></slot>
-</sp-advanced-cards>
+</sp-cards>
 ```
 
 #### Example
 
 ```html
-<sp-advanced-cards
+<sp-cards
     siteurl="https://our-sharepoint-site"
     weburl="ar/news"
     list="DA1A89B9-51EB-40C8-ABCB-E7BA05C4FFFC"
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')> see https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests"
     datefilterfromtext="From date"
     datefiltertotext="To date"
     nexttext="Next page"
@@ -197,7 +168,68 @@ Then in your pages you can add the components as html elements using a ScriptEdi
     <h2>
         News
     </h2>
-</sp-advanced-cards>
+</sp-cards>
+```
+
+### Map
+A full width locations map with pin markers, requires a custom list with the following fields: (Title:String, Lat:Number, Long:Number).
+
+#### Usage
+
+```html
+<sp-map
+    weburl="<web url relative to site collection *required>"
+    list="<list ID *required>"
+    siteurl="<site collection url (default: '')>"
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')> see https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests"
+    lat="<center latitude *required>"
+    long="<center longitude *required>"
+    zoom="<zoom factor (default: 12)>"
+    height="<map height in pixels (default: 400)>"
+    >
+</sp-map>
+```
+
+#### Example
+
+```html
+<sp-map
+    siteurl="http://sp2013.sp2013gm"
+    weburl="en"
+    list="26522569-F3AC-45E7-BD47-59B680731D15"
+    lat="24.43"
+    long="54.41"
+    height="350">
+</sp-map>
+```
+
+### Accordion
+A full width vertical accordion, requires a custom list with the following fields: (Title:String, Content:String|RichText).
+
+#### Usage
+
+```html
+<sp-accordion
+    weburl="<web url relative to site collection *required>"
+    list="<list ID *required>"
+    siteurl="<site collection url (default: '')>"
+    filter="<SharePoint REST Api filter (default: 'ID gt 0')> see https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests"
+    height="<accordion item content height in pixels (default: 150)>"
+    orderField="<field internal name (default: 'ID')>"
+    orderDirection="<asc | desc (default: 'desc')>"
+    dir="<rtl | ltr (default: ltr)>">
+</sp-accordion>
+```
+
+#### Example
+
+```html
+<sp-accordion
+    siteurl="http://sp2013.sp2013gm"
+    weburl="en"
+    list="9B1891B3-FE78-40F5-94F9-0E65570F6C87"
+    dir="rtl">
+</sp-accordion>
 ```
 
 
@@ -256,6 +288,7 @@ Import your component in `src/main.ts`
 import CoolComponent from './components/coolComponent.svelte'
 
 export default [
+    //Add
     CoolComponent //Export it to be compiled
     .
     .

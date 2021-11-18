@@ -12,8 +12,8 @@ let weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 let displayYear:number = (new Date(value || new Date())).getFullYear()
 let displayMonth:number = (new Date(value || new Date())).getMonth()
 
-$: minDate = mindate !== '' ? new Date(mindate) : null
-$: maxDate = maxdate !== '' ? new Date(maxdate) : null
+$: minDate = mindate ? new Date(mindate) : null
+$: maxDate = maxdate ? new Date(maxdate) : null
 
 $: {
     if(value){
@@ -63,6 +63,7 @@ const changeDisplayMonthBy = (numberOfMonths:number) => {
 //included (mindate:string, maxdate:string) to 
 //disable/enable day cells when mindate/maxdate change at runtime
 const cellIsEnabled = (year:number, month:number, dayCell:number, mindate:string, maxdate:string) => {
+    console.log(`${year} - ${month} - ${dayCell} - ${mindate} - ${maxdate}`)
     var cellDate = getCellDate(year, month, dayCell)
     var cellNextDate = getCellDate(year, month, dayCell + 1)
 
@@ -141,10 +142,11 @@ const selectDate = (day: number) => {
         box-shadow: 1px 2px 5px -3px;
         border: 1px solid rgba(0,0,0,0.2);
         border-radius: 10px;
+        background-color: #fff;
     }
 
     .header {
-        height: 30px;
+        height: 35px;
         direction: ltr;
     }
 
@@ -155,7 +157,7 @@ const selectDate = (day: number) => {
 
     .view-title {
         text-align: left;
-        font-size: 1.5em;
+        font-size: 1.2em;
     }
 
     .controls {

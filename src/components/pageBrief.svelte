@@ -23,6 +23,7 @@ $: imageWidthPercentage = isMobile ? 100 : 40
 $: float = imageisend !== 'false' ? (dir === 'rtl' ? 'left' : 'right') : (dir === 'ltr' ? 'left' : 'right')
 
 onMount(async () => {
+    siteurl = siteurl || document.currentScript.ownerDocument.baseURI
     var pagesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items(${pageid})/FieldValuesAsHtml`, options)
     page = (await pagesRes.json()).d;
     page.imageUrl = options.extractImageUrl(siteurl, page[imagefield])

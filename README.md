@@ -27,7 +27,7 @@ A full width image carousel, requires an image library with the additional field
 <sp-slider
     weburl="<web url relative to site collection *required>"
     list="<list ID *required>"
-    siteurl="<site collection url (default: '')>"
+    siteurl="<site collection url (default: '/')>"
     limit="<number limit (default: 1000000)>"
     interval="<number of milliseconds (default: 5000)>"
     height="<height in pixels (default: 400)>"
@@ -63,7 +63,7 @@ A full width links grid, requires a custom list with the following fields: (Titl
 <sp-links-grid
     weburl="<web url relative to site collection *required>"
     list="<list ID *required>"
-    siteurl="<site collection url (default: '')>"
+    siteurl="<site collection url (default: '/')>"
     limit="<number limit (default: 1000000)>"
     height="<link height in pixels (default: 35)>"
     orderField="<field internal name (default: 'ID')>"
@@ -100,7 +100,7 @@ A full width page brief, requires a publishing page.
     weburl="<web url relative to site collection *required>"
     list="<list ID *required>"
     pageid="<page ID *required>"
-    siteurl="<site collection url (default: '')>"
+    siteurl="<site collection url (default: '/')>"
     height="<card height in pixels (default: 400)>"
     smallwidth="<small breakpoint (default: 768)>"
     imageisend="<true | false (default: true)>"
@@ -132,7 +132,7 @@ A full width page cards with optional header, date range filter and results pagi
 <sp-cards
     weburl="<web url relative to site collection *required>"
     list="<list ID *required>"
-    siteurl="<site collection url (default: '')>"
+    siteurl="<site collection url (default: '/')>"
     height="<card height in pixels (default: 400)>"
     limit="<number limit (default: 4)>"
     smallwidth="<small breakpoint (default: 768)>"
@@ -180,7 +180,7 @@ A full width locations map with pin markers, requires a custom list with the fol
 <sp-map
     weburl="<web url relative to site collection *required>"
     list="<list ID *required>"
-    siteurl="<site collection url (default: '')>"
+    siteurl="<site collection url (default: '/')>"
     filter="<SharePoint REST Api filter (default: 'ID gt 0')> see https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests"
     lat="<center latitude *required>"
     long="<center longitude *required>"
@@ -212,7 +212,7 @@ A full width vertical accordion, requires a custom list with the following field
 <sp-accordion
     weburl="<web url relative to site collection *required>"
     list="<list ID *required>"
-    siteurl="<site collection url (default: '')>"
+    siteurl="<site collection url (default: '/')>"
     filter="<SharePoint REST Api filter (default: 'ID gt 0')> see https://docs.microsoft.com/en-us/sharepoint/dev/sp-add-ins/use-odata-query-operations-in-sharepoint-rest-requests"
     height="<accordion item content height in pixels (default: 150)>"
     orderField="<field internal name (default: 'ID')>"

@@ -29,10 +29,8 @@
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    const response = await fetch(
-      `${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=Title,Lat,Long&$filter=${filter}`,
-      options
-    );
+    siteurl = siteurl || document.currentScript.ownerDocument.baseURI
+    const response = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=Title,Lat,Long&$filter=${filter}`, options);
 
     markers = (await response.json()).d.results;
 

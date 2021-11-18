@@ -28,6 +28,7 @@ let fields = 'Title,Url,CssColor,Columns'
 let pages:any[] = []
 
 onMount(async () => {
+    siteurl = siteurl || document.currentScript.ownerDocument.baseURI
     var pagesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${fields}&$top=${count}&$filter=${filter}&$orderby=${orderField} ${orderDirection}`, options)
     pages = (await pagesRes.json()).d.results;
 })

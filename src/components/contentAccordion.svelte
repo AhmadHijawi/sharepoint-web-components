@@ -17,6 +17,7 @@ let items:any[] = []
 let activeItem = -1
 
 onMount(async () => {
+    siteurl = siteurl || document.currentScript.ownerDocument.baseURI
     var pagesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${fields}&$filter=${filter}&$orderby=${orderField} ${orderDirection}`, options)
     items = (await pagesRes.json()).d.results;
 })
@@ -62,7 +63,9 @@ onMount(async () => {
     }
 
     .header > span {
-        display: inline-block;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
     }
 
     .chevron {

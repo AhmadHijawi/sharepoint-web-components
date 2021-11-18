@@ -30,6 +30,7 @@ $: {
 } 
 
 onMount(async () => {
+    siteurl = siteurl || document.currentScript.ownerDocument.baseURI
     var slidesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${fields}&$top=${count}&$filter=${filter}&$orderby=${orderField} ${orderDirection}`, options)
     slides = (await slidesRes.json()).d.results;
 

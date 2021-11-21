@@ -14,18 +14,18 @@ export let interval:number = 5000
 export let orderField = 'ID'
 export let orderDirection = 'desc'
 
-let fields = 'Title,Subtitle,FileRef,Url'
+let fields = 'Title,Description,FileRef,Url'
 let slides:any[] = []
 let activeIndex = 0
 let mouseIsIn: boolean = false
 let count:number
 
 $: {
-    count = (limit <= 0 || limit > 8) ? 4 : limit;
+    count = (limit <= 0 || limit > 10) ? 4 : limit;
 
-    if(limit <= 0 || limit > 8)
+    if(limit <= 0 || limit > 10)
     {
-        console.log('sp-slider: limit should between 0 and 8')
+        console.log('sp-slider: limit should between 0 and 10')
     }
 } 
 
@@ -52,10 +52,10 @@ onMount(async () => {
     </div>
     {#each slides as slide, index}
         <a href="{slide.Url?.Url}" class="slide" style="background-image: url('{`${siteurl}${slide.FileRef}`}'); z-index: {index == activeIndex ? '1' : '0'}; opacity: {index == activeIndex ? '1' : '0'}">
-            {#if slide.Title || slide.Subtitle}
+            {#if slide.Title || slide.Description}
             <div class="content">
                 {#if slide.Title}<h1>{slide.Title}</h1>{/if}
-                {#if slide.Subtitle}<h3>{slide.Subtitle}</h3>{/if}
+                {#if slide.Description}<h3>{slide.Description}</h3>{/if}
             </div>
             {/if}
         </a>

@@ -63,7 +63,6 @@ const changeDisplayMonthBy = (numberOfMonths:number) => {
 //included (mindate:string, maxdate:string) to 
 //disable/enable day cells when mindate/maxdate change at runtime
 const cellIsEnabled = (year:number, month:number, dayCell:number, mindate:string, maxdate:string) => {
-    console.log(`${year} - ${month} - ${dayCell} - ${mindate} - ${maxdate}`)
     var cellDate = getCellDate(year, month, dayCell)
     var cellNextDate = getCellDate(year, month, dayCell + 1)
 

@@ -79,9 +79,7 @@ $: allFields = fields.concat(datefromfield, datetofield).filter(f => {return f})
 
 const fetchCards = async (spFilters:string) => {
     if(filtersList && filtersList.length > 0 && allFields && allFields.length > 0){
-        console.log(document)
         siteurl = siteurl || `${document.location.protocol}//${document.location.host}`
-        console.log(siteurl)
         currentUrl = currentUrl || `${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${allFields.join(',')}&$top=${count}&$filter=${spFilters}&$orderby=${orderField} ${orderDirection}`
         var pagesRes = await fetch(currentUrl, options)
         var data = (await pagesRes.json())

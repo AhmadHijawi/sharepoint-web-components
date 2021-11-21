@@ -19,7 +19,7 @@ In your masterpage add:
 Then in your pages you can add the components as html elements using a ScriptEditorWebPart (Edit page > Insert > Embed Code).
 
 ### Images Slider
-A full width image carousel, requires an image library with the additional fields: (Title:String, Subtitle:String, Url:String).
+A full width image carousel, requires an image library with the additional fields: (Title:String, Description:String, Url:String).
 
 #### Usage
 

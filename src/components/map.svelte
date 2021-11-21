@@ -29,7 +29,7 @@
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    siteurl = siteurl || document.currentScript.ownerDocument.baseURI
+    siteurl = siteurl || `${document.location.protocol}//${document.location.host}`
     const response = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=Title,Lat,Long&$filter=${filter}`, options);
 
     markers = (await response.json()).d.results;

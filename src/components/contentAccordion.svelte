@@ -17,7 +17,7 @@ let items:any[] = []
 let activeItem = -1
 
 onMount(async () => {
-    siteurl = siteurl || document.currentScript.ownerDocument.baseURI
+    siteurl = siteurl || `${document.location.protocol}//${document.location.host}`
     var pagesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${fields}&$filter=${filter}&$orderby=${orderField} ${orderDirection}`, options)
     items = (await pagesRes.json()).d.results;
 })

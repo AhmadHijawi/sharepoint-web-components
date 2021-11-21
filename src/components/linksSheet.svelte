@@ -28,7 +28,7 @@ let fields = 'Title,Url'
 let links:any[] = []
 
 onMount(async () => {
-    siteurl = siteurl || document.currentScript.ownerDocument.baseURI
+    siteurl = siteurl || `${document.location.protocol}//${document.location.host}`
     var linksRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${fields}&$top=${count}&$filter=${filter}&$orderby=${orderField} ${orderDirection}`, options)
     var rowLinks = (await linksRes.json()).d.results;
     rowLinks.map(p => {

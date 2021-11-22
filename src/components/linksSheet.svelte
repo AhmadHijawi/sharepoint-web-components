@@ -14,6 +14,7 @@ export let mediumwidth:number = 768
 export let orderField = 'ID'
 export let orderDirection = 'desc'
 export let fontsize = 16
+export let fontcolor = '#333'
 
 let fullWidth:number = 1
 let count:number
@@ -46,7 +47,7 @@ onMount(async () => {
 <div class="links {dir}" dir="{dir}" bind:clientWidth="{fullWidth}">
     {#each links as link}
         <div class="link-column" style="width: {layout ? '220px' : '50%'};">
-            <a class="link" href="{link.Url}" style="height: {height}px; font-size: {fontsize}px;">
+            <a class="link" href="{link.Url}" style="height: {height}px; font-size: {fontsize}px; color: {fontcolor};">
                 {link.Title}
             </a>
         </div>

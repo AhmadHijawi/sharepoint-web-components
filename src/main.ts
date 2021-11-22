@@ -9,6 +9,8 @@ import IconChevronUp from './components/icons/chevron-up.svelte'
 import IconChevronDown from './components/icons/chevron-down.svelte'
 import IconChevronRight from './components/icons/chevron-right.svelte'
 import IconChevronLeft from './components/icons/chevron-left.svelte'
+import IconInrCross from './components/icons/lnr-cross.svelte'
+import IconInrMenu from './components/icons/lnr-menu.svelte'
 import Map from './components/map.svelte'
 import Calendar from './components/generic/calendar.svelte'
 
@@ -24,6 +26,8 @@ export default [
     IconChevronDown,
     IconChevronRight,
     IconChevronLeft,
+    IconInrCross,
+    IconInrMenu,
     Map,
     Calendar
 ];

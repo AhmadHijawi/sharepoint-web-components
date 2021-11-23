@@ -11,8 +11,8 @@ export let limit:number = 1000000
 export let dir:string = 'ltr'
 export let height:number = 35
 export let mediumwidth:number = 768
-export let orderField = 'ID'
-export let orderDirection = 'desc'
+export let orderfield = 'ID'
+export let orderdirection = 'desc'
 export let fontsize = 16
 export let fontcolor = '#333'
 
@@ -30,7 +30,7 @@ let links:any[] = []
 
 onMount(async () => {
     siteurl = siteurl || `${document.location.protocol}//${document.location.host}`
-    var linksRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${fields}&$top=${count}&$filter=${filter}&$orderby=${orderField} ${orderDirection}`, options)
+    var linksRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${fields}&$top=${count}&$filter=${filter}&$orderby=${orderfield} ${orderdirection}`, options)
     var rowLinks = (await linksRes.json()).d.results;
     rowLinks.map(p => {
         if(p && p.Url && p.Url.indexOf('http') !== 0){

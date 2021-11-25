@@ -73,7 +73,7 @@ $: {
 
 $: count = limit || 4
 
-$: layout = fullWidth <= smallwidth ? 1 : (fullWidth <= mediumwidth ? Math.min(columns, 3) : Math.min(columns, 6))
+$: layout = fullWidth <= smallwidth ? 2 : (fullWidth <= mediumwidth ? Math.min(columns, 3) : Math.min(columns, 6))
 
 $: allFields = fields.concat(datefromfield, datetofield).filter(f => {return f})
 

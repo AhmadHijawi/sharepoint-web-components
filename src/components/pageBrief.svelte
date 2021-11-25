@@ -5,15 +5,16 @@ import options from '../service'
 
 export let weburl:string
 export let list:string
-export let siteurl:string = ''
+export let siteurl = ''
 export let pageid:number
-export let dir:string = 'ltr'
-export let imageisend:string = 'true'
-export let height:number = 400
-export let smallwidth:number = 768
-export let imagefield:string = 'PublishingRollupImage'
-export let backgroundcolor:string = 'transparent'
-export let textcolor:string = '#333'
+export let dir = 'ltr'
+export let imageisend = 'true'
+export let height = 400
+export let smallwidth = 768
+export let imagefield = 'PublishingRollupImage'
+export let backgroundcolor = '#fff'
+export let textcolor = '#333'
+export let moretext = 'Read more'
 
 let fullWidth:number = 1
 let page:any = {}
@@ -26,6 +27,7 @@ onMount(async () => {
     siteurl = siteurl || `${document.location.protocol}//${document.location.host}`
     var pagesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items(${pageid})/FieldValuesAsHtml`, options)
     page = (await pagesRes.json()).d;
+    console.log(page)
     page.imageUrl = options.extractImageUrl(siteurl, page[imagefield])
 })
 
@@ -39,9 +41,12 @@ onMount(async () => {
         <img src="{page.imageUrl}" alt="{page.Title}" style=""/>
     </div>
     <div class="content-box" style="float: {float}; width: {imageWidthPercentage == 100 ? 100 : 100 - imageWidthPercentage}%; color: {textcolor}">
-        <div>
-            <h3>{page.Title}</h3>
+        <div class="content">
+            <h2>{page.Title}</h2>
             <p>{@html page.PublishingPageContent}</p>
+        </div>
+        <div class="more" style="box-shadow: 0px 0px 21px 37px {backgroundcolor}; background: {backgroundcolor};">
+            <a style="color: {textcolor};" href="{`${siteurl}/${weburl}/pages/${page.FileLeafRef}`}">{moretext}</a>
         </div>
     </div>
     <div style="clear: both;"></div>
@@ -73,6 +78,24 @@ onMount(async () => {
     }
 
     .content-box {
+        position: relative;
         padding: 0 1%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .content-box h2{
+        margin-top: 0;
+    }
+
+    .content-box p{
+        font-size: 1.2rem;
+    }
+    
+    .content-box .more {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 23px;
     }
 </style>

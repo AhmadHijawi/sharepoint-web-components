@@ -45,7 +45,7 @@ onMount(async () => {
 <svelte:options tag="sp-slider"></svelte:options>
 
 <div class="slider {dir}" dir="{dir}" style="height: {height || 400}px;" on:mouseenter="{() => {mouseIsIn = true}}" on:mouseleave="{() => {mouseIsIn = false}}">
-    <div class="dots" style="top: {(height || 400) - 50}px;">
+    <div class="dots">
         {#each slides as _, index}
         <div class="dot" style="width: {index == activeIndex ? 60 : 30}px;" on:click="{() => {activeIndex = index}}"></div>
         {/each}
@@ -70,6 +70,7 @@ onMount(async () => {
         overflow: hidden;
         border-radius: 10px;
         box-shadow: 1px 3px 8px -4px #000;
+        max-height: 40vh;;
     }
 
     .slider:hover {
@@ -117,6 +118,7 @@ onMount(async () => {
         z-index: 2;
         width: 100%;
         text-align: center;
+        bottom: 15px;
     }
 
     .dot {

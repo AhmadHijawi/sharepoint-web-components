@@ -12,9 +12,8 @@ export let imageisend = 'true'
 export let height = 400
 export let smallwidth = 768
 export let imagefield = 'PublishingRollupImage'
-export let backgroundcolor = '#fff'
+export let backgroundcolor = 'transparent'
 export let textcolor = '#333'
-export let moretext = 'Read more'
 
 let fullWidth:number = 1
 let page:any = {}
@@ -42,11 +41,10 @@ onMount(async () => {
     </div>
     <div class="content-box" style="float: {float}; width: {imageWidthPercentage == 100 ? 100 : 100 - imageWidthPercentage}%; color: {textcolor}">
         <div class="content">
-            <h2>{page.Title}</h2>
+            <a style="color: {textcolor}; font-size: 1rem;" href="{`${siteurl}/${weburl}/pages/${page.FileLeafRef}`}">
+                <h2>{@html page.Title}</h2>
+            </a>
             <p>{@html page.PublishingPageContent}</p>
-        </div>
-        <div class="more" style="box-shadow: 0px 0px 21px 37px {backgroundcolor}; background: {backgroundcolor};">
-            <a style="color: {textcolor};" href="{`${siteurl}/${weburl}/pages/${page.FileLeafRef}`}">{moretext}</a>
         </div>
     </div>
     <div style="clear: both;"></div>
@@ -59,7 +57,7 @@ onMount(async () => {
     }
 
     .page {
-        padding: 25px 1%;
+        padding: 25px 0;
         margin-bottom: 14px;
     }
 
@@ -67,14 +65,18 @@ onMount(async () => {
         display: block;
         border: none;
         border-radius: 10px;
-        margin: 0 auto;
+        margin: 0;
         max-width: 100%;
         max-height: 100%;
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
     }
 
     .image-box {
-        padding: 0 1%;
+        padding: 0;
         height: 100%;
+        position: relative;
     }
 
     .content-box {
@@ -82,6 +84,7 @@ onMount(async () => {
         padding: 0 1%;
         height: 100%;
         overflow: hidden;
+        text-align: justify;
     }
 
     .content-box h2{
@@ -90,12 +93,5 @@ onMount(async () => {
 
     .content-box p{
         font-size: 1.2rem;
-    }
-    
-    .content-box .more {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        height: 23px;
     }
 </style>

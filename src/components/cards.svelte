@@ -165,8 +165,8 @@ onMount(() => {
                 {#each pages as page}
                     {#if page.imageUrl}
                     <div class="card-column" style="width: {100 / layout}%;">
-                        <a class="card" href="{`${siteurl}${page.FileRef}`}" style="height: {height}px;">
-                            <div class="image" style="height: {height - 130}px; background-image: url('{page.imageUrl}');"></div>
+                        <a class="card" href="{`${siteurl}${page.FileRef}`}" style="height: {height - (layout === 2 ? 100 : 0)}px;">
+                            <div class="image" style="height: {height - 130 - (layout === 2 ? 100 : 0)}px; background-image: url('{page.imageUrl}');"></div>
                             <div class="content">
                                 <h4>{page.Title}</h4>
                                 <p>{new Date(page[datefromfield]).toLocaleDateString()} {datetofield ? ` - ${new Date(page[datefromfield]).toLocaleDateString()}` : ''}</p>

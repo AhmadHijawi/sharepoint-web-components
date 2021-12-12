@@ -26,7 +26,6 @@ onMount(async () => {
     siteurl = siteurl || `${document.location.protocol}//${document.location.host}`
     var pagesRes = await fetch(`${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items(${pageid})/FieldValuesAsHtml`, options)
     page = (await pagesRes.json()).d;
-    console.log(page)
     page.imageUrl = options.extractImageUrl(siteurl, page[imagefield])
 })
 

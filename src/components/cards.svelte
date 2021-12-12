@@ -13,8 +13,8 @@ export let dir:string = 'ltr'
 export let height:number = 400
 export let smallwidth:number = 576
 export let mediumwidth:number = 768
-export let orderField = 'ArticleStartDate'
-export let orderDirection = 'desc'
+export let orderfield = 'ArticleStartDate'
+export let orderdirection = 'desc'
 export let imagefield:string = 'PublishingRollupImage'
 export let datefilterfromtext:string = 'From'
 export let datefiltertotext:string = 'To'
@@ -80,7 +80,7 @@ $: allFields = fields.concat(datefromfield, datetofield).filter(f => {return f})
 const fetchCards = async (spFilters:string) => {
     if(filtersList && filtersList.length > 0 && allFields && allFields.length > 0){
         siteurl = siteurl || `${document.location.protocol}//${document.location.host}`
-        currentUrl = currentUrl || `${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${allFields.join(',')}&$top=${count}&$filter=${spFilters}&$orderby=${orderField} ${orderDirection}`
+        currentUrl = currentUrl || `${siteurl}/${weburl}/_api/web/Lists(guid'${list}')/items?$select=${allFields.join(',')}&$top=${count}&$filter=${spFilters}&$orderby=${orderfield} ${orderdirection}`
         var pagesRes = await fetch(currentUrl, options)
         var data = (await pagesRes.json())
         pages = data.d.results;

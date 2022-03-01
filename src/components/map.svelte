@@ -63,6 +63,7 @@
         margin-bottom: 14px;
         border-radius: 10px;
         box-shadow: 1px 3px 8px -4px #000;
+        z-index: 2;
     }
 
     #map:hover {

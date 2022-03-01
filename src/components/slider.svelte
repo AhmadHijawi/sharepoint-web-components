@@ -51,7 +51,7 @@ onMount(async () => {
         {/each}
     </div>
     {#each slides as slide, index}
-        <a href="{slide.Url?.Url}" class="slide" style="background-image: url('{`${siteurl}${slide.FileRef}`}'); z-index: {index == activeIndex ? '1' : '0'}; opacity: {index == activeIndex ? '1' : '0'}">
+        <a href="{slide.Url}" class="slide" style="background-image: url('{`${siteurl}${slide.FileRef}`}'); z-index: {index == activeIndex ? '1' : '0'}; opacity: {index == activeIndex ? '1' : '0'}">
             {#if slide.Title || slide.Description}
             <div class="content">
                 {#if slide.Title}<h1>{slide.Title}</h1>{/if}

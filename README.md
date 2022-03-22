@@ -1,6 +1,6 @@
 # SharePoint Web Components
 
-A collection of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) designed for SharePoint 2013-2019/Online sites as isolated components, they will inherit the font family of the host page, other than that, the styles and scripts of these components will not effect or be effected by the host page's styles and scripts, as well as other copies of the same component, these components are build and compiled using [Svelte](https://svelte.dev/) to be lightweight, provide maximum performance and because [Svelte is awesome](https://insights.stackoverflow.com/survey/2021#web-frameworks)
+A collection of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) designed for SharePoint 2013-2019/Online sites as isolated components, they will inherit the font family of the host page, other than that, the styles and scripts of these components will not effect or be effected by the host page's styles and scripts, as well as other copies of the same component, these components are build and compiled using [Svelte](https://svelte.dev/) to be lightweight, provide maximum performance and because [Svelte is awesome](https://insights.stackoverflow.com/survey/2021#section-most-loved-dreaded-and-wanted-web-frameworks)
 
 ## Usage
 
